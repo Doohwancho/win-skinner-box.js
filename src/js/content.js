@@ -1,4 +1,12 @@
 
-const target = document.querySelector('.style-scope.ytd-section-list-renderer:nth-child(1) > DIV.style-scope.ytd-item-section-renderer:nth-child(3)');
-target.parentElement.removeChild(target);
+const frame = document.querySelector('#content');
+console.log(frame);
+
+frame.addEventListener( 'DOMNodeInserted', function ( event ) {
+    if( event.target.id == 'title' ) { 
+        if(event.target.innerText === 'Today'){
+            event.target.parentNode.parentNode.parentNode.parentNode.remove();
+        }
+    };
+}, false );
 
