@@ -12,7 +12,7 @@
           "js": ["/src/js/content.js"]
         }
       ],
-    "permissions": ["storage", "activeTab", "scripting"],
+    "permissions": ["storage", "activeTab", "scripting", "Tabs"],
     "action": {
         "default_popup": "/src/html/popup.html",
         "default_icon": {
