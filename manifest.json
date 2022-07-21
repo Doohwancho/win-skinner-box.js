@@ -7,12 +7,13 @@
         "service_worker": "/src/js/background.js"
     },
     "content_scripts": [
-        {
+        { 
           "matches": ["https://www.youtube.com/feed/subscriptions" ],
-          "js": ["/src/js/content.js"]
+          "js": ["/src/js/content.js"],
+          "run_at": "document_end"
         }
       ],
-    "permissions": ["storage", "activeTab", "scripting", "Tabs"],
+    "permissions": ["storage", "activeTab", "scripting"],
     "action": {
         "default_popup": "/src/html/popup.html",
         "default_icon": {
