@@ -1,24 +1,26 @@
-// Initialize button with user's preferred color 
-let changeColor = document.getElementById("changeColor");
+let hourUnitDOM = document.getElementById('hour-unit');
 
-chrome.storage.sync.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
+hourUnitDOM.addEventListener("change", function(e){
+  chrome.storage.sync.set({
+      features: {
+          time: {
+              hourUnit: e.target.value,
+          }
+      },
+  });
 });
 
-// When the button is clicked, inject setPageBackgroundColor into current page 
-changeColor.addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: setPageBackgroundColor ,
-    });
+
+function updatePopup() {
+  chrome.storage.sync.get({
+      features: {
+          time: {
+              hourUnit: '00:00:00'
+          }
+        }
+    }, function(option){
+      hourUnitDOM.value = option.features.time.hourUnit;
   });
-  
-  // The body of this function will be executed as a content script inside the 
-  // current page
-  function setPageBackgroundColor () {
-    chrome.storage.sync.get("color", ({ color }) => {
-      document.body.style.backgroundColor = color;
-    });
-  }
+}
+
+document.addEventListener('DOMContentLoaded', updatePopup, false);
