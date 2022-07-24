@@ -43,7 +43,7 @@ function blockYoutube(){
                 
                 if (node.matches('[id*="dismissible"]')) {
                     if(node.className == 'style-scope ytd-shelf-renderer'){
-                        if(node.querySelector('#title').innerText == 'Today' || node.querySelector('#title').innerText == '오늘'){
+                        if(node.querySelector('#title').innerText == 'Today' || node.querySelector('#title').innerText == '오늘'|| node.querySelector('#title').innerText == '최근 업로드 순'|| node.querySelector('#title').innerText == 'Recent'){
                             node.hidden = true;
                             node.parentNode.parentNode.hidden = true;
                         } 
